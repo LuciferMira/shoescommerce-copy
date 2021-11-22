@@ -4,18 +4,18 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="<?= base_url();?>" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="product.php" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
+			<a href="<?=base_url('produk')?>" class="stext-109 cl8 hov-cl1 trans-04">
+				Produk
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Lightweight Jacket
+			 <?= $produk->nama_produk ?>
 			</span>
 		</div>
 	</div>
@@ -32,90 +32,95 @@
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="assets/images/product-detail-01.jpg">
+								<?php
+								foreach($foto as $foto):
+									if($foto->foto_produk!=NULL) :
+							  ?>
+								<div class="item-slick3" data-thumb="<?= base_url() ?>assets/upload/produk/<?= $foto->foto_produk ?>">
 									<div class="wrap-pic-w pos-relative">
-										<img src="assets/images/product-detail-01.jpg" alt="IMG-PRODUCT">
+										<img src="<?= base_url() ?>assets/upload/produk/<?= $foto->foto_produk ?>" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="assets/images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?= base_url() ?>assets/upload/produk/<?= $foto->foto_produk ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="assets/images/product-detail-02.jpg">
+								<?php else: ?>
+								<div class="item-slick3" data-thumb="<?= base_url() ?>assets/upload/produk/default.png">
 									<div class="wrap-pic-w pos-relative">
-										<img src="assets/images/product-detail-02.jpg" alt="IMG-PRODUCT">
+										<img src="<?= base_url() ?>assets/upload/produk/default.png" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="assets/images/product-detail-02.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?= base_url() ?>assets/upload/produk/default.png">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
-
-								<div class="item-slick3" data-thumb="assets/images/product-detail-03.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="assets/images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="assets/images/product-detail-03.jpg">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
+							<?php
+								endif;
+							endforeach;
+						  ?>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-lg-5 p-b-30">
+					<form action="<?= base_url('cart/add') ?>" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="id_produk" value="<?= $produk->id_produk ?>">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							Lightweight Jacket
+							<?= $produk->nama_produk ?>
 						</h4>
 
 						<span class="mtext-106 cl2">
-							$58.79
+							Rp. <?= $produk->harga_produk ?>
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+							Pilih Ukuran dan Varian Warna
 						</p>
 
 						<!--  -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
-									Size
+									Ukuran
 								</div>
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select class="js-select2" name="id_ukuran" id="id_ukuran">
 											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
+											<?php foreach($detail as $ukuran):
+											if($ukuran->stok > 0):?>
+											<option value="<?= $ukuran->id_ukuran?>"><?= $ukuran->nama_ukuran ?></option>
+											<?php endif;
+											endforeach; ?>
 										</select>
 										<div class="dropDownSelect2"></div>
+										<input type="hidden" name="ukuran" id="ukuran">
 									</div>
 								</div>
 							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
-									Color
+									Warna
 								</div>
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select class="js-select2" name="id_detail" id="id_detail">
 											<option>Choose an option</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
+											<?php foreach($detail as $warna):
+											if($warna->stok > 0):?>
+											<option value="<?= $warna->id_detail?>"><?= $warna->warna ?></option>
+											<?php endif;
+											endforeach; ?>
 										</select>
 										<div class="dropDownSelect2"></div>
+										<input type="hidden" name="warna" id="warna">
 									</div>
 								</div>
 							</div>
@@ -127,16 +132,19 @@
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1">
+										<input type="hidden" name="price" value="<?= $produk->harga_produk ?>">
+										<input type="hidden" name="name" value="<?= $produk->nama_produk ?>">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
+								</form>
 								</div>
 							</div>
 						</div>
@@ -178,7 +186,7 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+									<?= $produk->deskripsi ?>
 								</p>
 							</div>
 						</div>
@@ -189,7 +197,7 @@
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<ul class="p-lr-28 p-lr-15-sm">
 										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
+											<!-- <span class="stext-102 cl3 size-205">
 												Weight
 											</span>
 
@@ -216,25 +224,33 @@
 											<span class="stext-102 cl6 size-206">
 												60% cotton
 											</span>
+										</li> -->
+
+										<li class="flex-w flex-t p-b-7">
+											<span class="stext-102 cl3 size-205">
+												Varian Warna
+											</span>
+
+											<span class="stext-102 cl6 size-206">
+												<?php foreach($detail as $warna):
+												if($warna->stok > 0):?>
+												<?= $warna->warna ?>,
+												<?php endif;
+												endforeach; ?>
+											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Color
+												Ukuran
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Size
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												XL, L, M, S
+												<?php foreach($detail as $ukuran):
+												if($ukuran->stok > 0):?>
+												<?= $ukuran->nama_ukuran ?>,
+												<?php endif;
+												endforeach; ?>
 											</span>
 										</li>
 									</ul>
@@ -331,61 +347,11 @@
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
+				<!-- SKU: JAK-01 -->
 			</span>
 
 			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
+				Kategori: <?= $produk->nama_kategori ?>
 			</span>
-		</div>
-	</section>
-
-
-	<!-- Related Products -->
-	<section class="sec-relate-product bg0 p-t-45 p-b-105">
-		<div class="container">
-			<div class="p-b-45">
-				<h3 class="ltext-106 cl5 txt-center">
-					Related Products
-				</h3>
-			</div>
-
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="assets/images/product-01.jpg" alt="IMG-PRODUCT">
-
-								<a href="product-detail.php" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Esprit Ruffle Shirt
-									</a>
-
-									<span class="stext-105 cl3">
-										$16.64
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="assets/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="assets/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
 		</div>
 	</section>

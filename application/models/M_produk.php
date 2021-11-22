@@ -5,6 +5,15 @@ class M_produk extends CI_Model{
 	function get_all($table){
 		return $this->db->get($table);
 	}
+
+	function read_slug($where){
+		$this->db->select('*');
+		$this->db->from('produk');
+		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori');
+		$this->db->where('slug_produk', $where);
+		return $this->db->get();
+	}
+
 	function get_join_all(){
 		$this->db->select('*');
 		$this->db->from('produk');
@@ -15,6 +24,7 @@ class M_produk extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('produk');
 		$this->db->join('foto', 'produk.id_produk = foto.id_produk');
+		$this->db->group_by('nama_produk');
 		$this->db->limit(4);
 		return $this->db->get();
 	}

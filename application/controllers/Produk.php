@@ -20,4 +20,18 @@ class Produk extends CI_Controller {
 								);
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
+	public function detail($slug_produk)
+	{
+		$dataproduk = $this->m_produk->read_slug($slug_produk)->row();
+		$id_produk  = $dataproduk->id_produk;
+		$datafoto = $this->m_foto->search($id_produk)->result();
+		$datadetail = $this->m_produk->get_detail_all($id_produk)->result();
+		$data = array('produk' => $dataproduk,
+									'foto' => $datafoto,
+									'detail' => $datadetail,
+									'isi' => 'produk/detail',
+									'title' => 'Detail Produk'
+								);
+		$this->load->view('layout/wrapper', $data, FALSE);
+	}
 }

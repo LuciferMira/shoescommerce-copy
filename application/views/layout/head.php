@@ -90,7 +90,7 @@
 						</div>
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
-                            <a href="<?= base_url('belanja'); ?>"><i class="zmdi zmdi-shopping-cart"></i></a>
+                            <a href="<?= base_url('cart'); ?>"><i class="zmdi zmdi-shopping-cart"></i></a>
 						</div>
 					</div>
 				</nav>

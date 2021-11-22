@@ -222,6 +222,18 @@
 
 <!--===============================================================================================-->
 	<script src="<?= base_url(); ?>assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script>
+		$('#id_ukuran').change(function(){
+	    let ukuran = $('#ukuran').val($("#id_ukuran option:selected").text())
+		})
+		 // $("#id_ukuran option:selected").text();
+	</script>
+	<script>
+		$('#id_detail').change(function(){
+	    let warna = $('#warna').val($("#id_detail option:selected").text())
+		})
+		 // $("#id_ukuran option:selected").text();
+	</script>
 <!--===============================================================================================-->
 	<script src="<?= base_url(); ?>assets/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
