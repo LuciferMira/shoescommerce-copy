@@ -133,13 +133,14 @@
 										</div>
 
 										<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1">
-										<input type="hidden" name="price" value="<?= $produk->harga_produk ?>">
-										<input type="hidden" name="name" value="<?= $produk->nama_produk ?>">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
+									<input type="hidden" name="price" value="<?= $produk->harga_produk ?>">
+									<input type="hidden" name="name" value="<?= $produk->nama_produk ?>">
+									<input type="hidden" name="foto" value="<?= $foto->foto_produk ?>">
 
 									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart

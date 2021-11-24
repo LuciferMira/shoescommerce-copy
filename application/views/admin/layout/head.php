@@ -257,6 +257,12 @@
                                     class="hide-menu">Blog</span></a></li>
 
                         <li class="list-divider"></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Transaksi</span></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="<?= base_url('admin/transaksi') ?>"
+                                    aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                        class="hide-menu">Transaksi</span></a></li>
+
+                        <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">User</span></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"

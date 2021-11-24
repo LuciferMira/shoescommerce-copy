@@ -31,6 +31,7 @@ class Login extends CI_Controller {
 			$data_session = array(
 				'id' => $datauser->id_user,
 				'nama' => $datauser->nama,
+				'email' => $datauser->email,
 				'telepon' => $datauser->telepon,
 				'alamat' => $datauser->alamat,
 				'tanggal_lahir' => $datauser->tanggal_lahir,
@@ -48,12 +49,12 @@ class Login extends CI_Controller {
 			}
 
 		}else{
-			echo "Email dan password salah !";
+			redirect(base_url("login"));
 		}
 	}
 
 	function logout(){
 		$this->session->sess_destroy();
-		redirect(base_url('login'));
+		redirect(base_url());
 	}
 }
