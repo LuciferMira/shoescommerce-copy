@@ -62,12 +62,13 @@ class Transaksi extends CI_Controller {
 	}
 
 	public function detail($id){
-		$where = array('id_kategori' => $id);
-		$datakategori = $this->m_kategori->search('kategori',$where)->row();
+		$datatransaksi = $this->m_transaksi->get_join_search($id)->row();
+		$datadetail = $this->m_transaksi->get_all_detail($id)->result();
 		$data = array('datauser' => $this->session->userdata(),
-									'kategori'	=> $datakategori,
-									'isi' => 'admin/kategori/detail',
-									'title' => 'Detail Kategori'
+									'transaksi'	=> $datatransaksi,
+									'detail'	=> $datadetail,
+									'isi' => 'admin/transaksi/detail',
+									'title' => 'Detail Transaksi'
 								);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 		// var_dump($datausers);

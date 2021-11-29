@@ -14,6 +14,12 @@ class M_produk extends CI_Model{
 		return $this->db->get();
 	}
 
+	function count_produk(){
+		$this->db->select('*');
+		$this->db->from('produk');
+		return $this->db->count_all_results();
+	}
+
 	function get_join_all(){
 		$this->db->select('*');
 		$this->db->from('produk');

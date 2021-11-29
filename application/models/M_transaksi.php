@@ -11,6 +11,34 @@ class M_transaksi extends CI_Model{
 		$this->db->join('users', 'users.id_user = transaksi.id_transaksi');
 		return $this->db->get();
 	}
+	function count_transaksi(){
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		// $this->db->where('akses','customer');
+		return $this->db->count_all_results();
+	}
+	function get_join_search($where){
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		$this->db->join('users', 'users.id_user = transaksi.id_transaksi');
+		$this->db->where('id_transaksi', $where);
+		return $this->db->get();
+	}
+	function get_all_detail($where){
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		$this->db->join('detail_transaksi', 'detail_transaksi.kode_transaksi = transaksi.kode_transaksi');
+		$this->db->join('produk', 'detail_transaksi.id_produk = produk.id_produk');
+		$this->db->where('id_transaksi', $where);
+		return $this->db->get();
+	}
+	function get_all_detail_trans(){
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		$this->db->join('detail_transaksi', 'detail_transaksi.kode_transaksi = transaksi.kode_transaksi');
+		$this->db->join('produk', 'detail_transaksi.id_produk = produk.id_produk');
+		return $this->db->get();
+	}
 	function search($table,$where){
 		return $this->db->get_where($table,$where);
 	}

@@ -39,7 +39,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Tabel Kategori</h4>
+                                <h4 class="card-title">Tabel Transaksi</h4>
                                 <!-- <button type="button" class="btn btn-success" data-toggle="modal"
                                         data-target="#bs-example-modal-lg"><i class="fas fa-plus-circle"></i>
                                 </button> -->
