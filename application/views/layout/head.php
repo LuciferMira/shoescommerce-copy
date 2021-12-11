@@ -86,7 +86,7 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11">
-							<?php if($this->session->userdata('status') == 'login'):?>
+							<?php if($this->session->userdata('nama')!= NULL):?>
 							<a href="<?= base_url('login/logout') ?>"><i class="zmdi zmdi-walk"></i></a>
 						<?php else: ?>
 							<a href="<?= base_url('login'); ?>"><i class="zmdi zmdi-sign-in"></i></a>

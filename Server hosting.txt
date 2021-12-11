@@ -1,0 +1,6 @@
+web username : shoescommerce
+web pass: lE*$AW5dtuFIxbGx3x^!
+
+db : id18047162_db_shoescommerce
+username : id18047162_toor
+pass : ?*TiPAkT]8yF)xoG

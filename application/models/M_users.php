@@ -26,4 +26,29 @@ class M_users extends CI_Model{
 	function delete($table,$id){
 		return $this->db->delete($table,array('id_user' => $id));
 	}
+	function update($table,$data,$id){
+		return $this->db->update($table,$data,array('id_user' => $id));
+	}
+	function Is_already_register($id)
+    {
+        $this->db->where('login_oauth_uid', $id);
+        $query = $this->db->get('users');
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function Update_user_data($data, $id)
+    {
+        $this->db->where('login_oauth_uid', $id);
+        $this->db->update('users', $data);
+    }
+
+    function Insert_user_data($data)
+    {
+        $this->db->insert('users', $data);
+    }
+
 }

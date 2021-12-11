@@ -84,13 +84,30 @@ class Belanja extends CI_Controller {
 				//setelah masuk ke table transaksi, maka keranjang di kosongkan lagi
 				$this->cart->destroy();
 				//end pengosongan keranjang
+				//update status transaksi
 				$this->session->set_flashdata('sukses', 'Checkout berhasil');
-				redirect(base_url('belanja/sukses'),'refresh');
+				redirect(base_url('belanja/sukses/'.$data->kode_transaksi),'refresh');
 		//end masuk database
 		}else{
 				//kalau belum, wajib registrasi
-				$this->session->set_flashdata('sukses', 'silahkan login atau registrasi terlebih dahulu');
+				$this->session->set_flashdata('failed', 'silahkan login atau registrasi terlebih dahulu');
 				redirect(base_url('login'), 'refresh');
 		}
+	}
+
+	public function sukses(){
+		// $kode_transaksi = $kode;
+		// $data1 = array(
+		// 	'kode_transaksi' => $kode_transaksi,
+		// 	'status' => 'lunas',
+		// 	'tanggal_bayar' => date('Y-m-d H:i:s')
+		// );
+		// $this->m_transaksi->update('transaksi', $data1, $kode);
+		$data = array(
+									'datauser' => $this->session->userdata(),
+									'isi' => 'belanja/sukses',
+									'title' => 'Sukses Belanja'
+								);
+		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 }

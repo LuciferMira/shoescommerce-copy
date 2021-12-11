@@ -1,0 +1,4 @@
+client ID : 388926786174-v17sp557ko09b0njufhifnp5cbcon8hn.apps.googleusercontent.com
+
+client secret : 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
+

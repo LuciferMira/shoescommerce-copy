@@ -70,6 +70,13 @@
                                     <button type="submit" class="btn btn-block btn-dark">Login</button>
                                     <a href="<?= base_url() ?>" class="btn btn-block btn-dark">Kembali</a>
                                 </div>
+
+                                <br><hr>
+                                <div class="col-lg-12 text-center">
+                                      <label class="text-dark" for="pwd">Or Login With</label>
+                                      <!-- <a href="" class="btn btn-block btn-dark"><img src="<?= base_url() ?>assets/google_btn_rapih.png" /></a> -->
+                                      <a href="<?= $google_btn ?>" class="btn btn-block btn-dark">Google</a>
+                                </div>
                                 <div class="col-lg-12 text-center mt-5">
                                     Tidak punya akun? <a href="<?= base_url('registrasi') ?>" class="text-danger">Daftar</a>
                                 </div>

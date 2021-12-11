@@ -45,10 +45,10 @@ class M_transaksi extends CI_Model{
 	function insert($table,$data){
 		return $this->db->insert($table,$data);
 	}
-	function delete($table,$id){
-		return $this->db->delete($table,array('id_kategori' => $id));
-	}
-	function update($table,$data,$id){
-		return $this->db->update($table,$data,array('id_kategori' => $id));
+	// function delete($table,$id){
+	// 	return $this->db->delete($table,array('id_kategori' => $id));
+	// }
+	function update($table,$data,$kode){
+		return $this->db->update($table,$data,array('kode_transaksi' => $kode));
 	}
 }

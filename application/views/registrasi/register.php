@@ -47,25 +47,52 @@
                     <div class="p-3">
                         <img src="<?= base_url() ?>assets/assets/images/big/icon.png" alt="wrapkit">
                         <h2 class="mt-3 text-center">Daftar</h2>
-                        <form class="mt-4">
+                        <form class="mt-4" action="<?= base_url('registrasi/do_regis') ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="your name">
+                                        <input class="form-control" type="text" placeholder="Nama Lengkap" name="nama">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="email" placeholder="email address">
+                                        <input class="form-control" type="email" placeholder="Email" name="email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="password" placeholder="password">
+                                        <input class="form-control" type="password" placeholder="Password" name="password">
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Telepon" name="telepon">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <!-- <input class="form-control" type="password" placeholder="Password" name="password"> -->
+                                        <textarea name="alamat" rows="3" cols="80" class="form-control" placeholder="Alamat Lengkap"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Tempat Lahir" name="tempat_lahir">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="date" placeholder="Tanggal Lahir" name="tanggal_lahir">
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="file" placeholder="Foto Profil" name="foto">
+                                    </div>
+                                </div> -->
                                 <div class="col-lg-12 text-center">
                                     <button type="submit" class="btn btn-block btn-dark">Daftar</button>
+                                    <a href="<?= base_url('home') ?>" class="btn btn-block btn-dark">Kembali</a>
                                 </div>
                                 <div class="col-lg-12 text-center mt-5">
                                     Sudah punya akun? <a href="<?= base_url('login') ?>" class="text-danger">Login</a>
