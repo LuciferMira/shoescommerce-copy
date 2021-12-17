@@ -23,7 +23,7 @@ class Belanja extends CI_Controller {
 	{
 		//check pelanggan sudah login / tidak, jika belum akan dialihkan ke halaman registrasi / login dengan session email
 		//kondisi sudah login
-		if ($this->session->userdata('status') == 'login') {
+		if ($this->session->userdata('nama') != NULL) {
 		$total = 0;
 		$keranjang      = $this->cart->contents();
 		$datauser = $this->session->userdata();

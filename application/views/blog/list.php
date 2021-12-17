@@ -11,49 +11,51 @@
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
+				<div class="col-md-12 col-lg-12 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
 						<!-- item blog -->
+						<?php foreach($blog as $data):
+						?>
 						<div class="p-b-63">
-							<a href="blog-detail.php" class="hov-img0 how-pos5-parent">
-								<img src="assets/images/blog-04.jpg" alt="IMG-BLOG">
+							<a href="<?= base_url('blog/detail/').$data->id_blog?>" class="hov-img0 how-pos5-parent">
+								<img src="<?= base_url() ?>assets/upload/blog/<?= $data->gambar_blog ?>" alt="IMG-BLOG">
 
 								<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
-										22
+										<?= date('d', strtotime($data->tanggal_dibuat)) ?>
 									</span>
 
 									<span class="stext-109 cl3 txt-center">
-										Jan 2018
+										<?= date('M', strtotime($data->tanggal_dibuat))." ".date('Y', strtotime($data->tanggal_dibuat)) ?>
 									</span>
 								</div>
 							</a>
 
 							<div class="p-t-32">
 								<h4 class="p-b-15">
-									<a href="blog-detail.php" class="ltext-108 cl2 hov-cl1 trans-04">
-										Judul blog
+									<a href="<?= base_url('blog/detail/').$data->id_blog?>" class="ltext-108 cl2 hov-cl1 trans-04">
+										<?= $data->judul_blog ?>
 									</a>
 								</h4>
 
 								<p class="stext-117 cl6">
-									Isi blog
+									<?= $data->isi_blog ?>
 								</p>
 
 								<div class="flex-w flex-sb-m p-t-18">
 									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
 										<span>
-											<span class="cl4">By</span> "NAMA PUBLISHER"
-											<span class="cl12 m-l-4 m-r-6">|</span>
+											<span class="cl4">By</span> <?= $data->nama ?>
+											<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
 										</span>
 
-										<span>
-                                            8 Comments
-                                        </span>
+										<!-- <span>
+                    	8 Comments
+                    </span> -->
 
 									</span>
 
-									<a href="blog-detail.php" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+									<a href="<?= base_url('blog/detail/').$data->id_blog?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
 										Continue Reading
 
 										<i class="fa fa-long-arrow-right m-l-9"></i>
@@ -61,7 +63,7 @@
 								</div>
 							</div>
 						</div>
-
+						<?php endforeach; ?>
 
 						<!-- Pagination -->
 						<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
@@ -76,7 +78,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-4 col-lg-3 p-b-80">
+				<!-- <div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
 						<div class="bor17 of-hidden pos-relative">
 							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
@@ -150,7 +152,7 @@
 						</div>
 
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

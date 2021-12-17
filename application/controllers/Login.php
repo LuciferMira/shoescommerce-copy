@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 		  $google_client = new Google_Client();
 		  $google_client->setClientId('388926786174-v17sp557ko09b0njufhifnp5cbcon8hn.apps.googleusercontent.com'); //masukkan ClientID anda
 		  $google_client->setClientSecret('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'); //masukkan Client Secret Key anda
-		  $google_client->setRedirectUri('http://localhost/shoescommerce-main/login/login_google'); //Masukkan Redirect Uri anda
+		  $google_client->setRedirectUri('http://localhost/shoescommerce-main/login'); //Masukkan Redirect Uri anda
 		  $google_client->addScope('email');
 		  $google_client->addScope('profile');
 			if(isset($_GET["code"]))
@@ -28,6 +28,7 @@ class Login extends CI_Controller {
 										$data = $google_service->userinfo->get();
 										$current_datetime = date('Y-m-d H:i:s');
                     if($this->m_users->Is_already_register($data['id'])){
+											$datadaridb = $this->m_users->searchid($data['id'])->row();
                     	//update data
 	                    $user_data = array(
 												'nama'  => $data['given_name']." ".$data['family_name'],
@@ -37,7 +38,9 @@ class Login extends CI_Controller {
 		                    'tanggal_update'  => $current_datetime
 	                    );
 
-                    	$this->m_users->Update_user_data($user_data, $data['id']);
+											$this->m_users->Update_user_data($user_data, $data['id']);
+											$idu = $datadaridb->id_user;
+											$user_data += ['id' => $idu];
                     }else{
 	                    //insert data
 	                    $user_data = array(
@@ -50,6 +53,9 @@ class Login extends CI_Controller {
 	                    );
 
                     	$this->m_users->Insert_user_data($user_data);
+											$datadaridb = $this->m_users->searchid($data['id'])->row();
+											$idu = $datadaridb->id_user;
+											$user_data += ['id' => $idu];
                     }
                     $this->session->set_userdata($user_data);
 								}

@@ -14,7 +14,7 @@
 			</a>
 
 			<span class="stext-109 cl4">
-				8 Inspiring Ways to Wear Dresses in the Winter
+				<?= $blog->judul_blog ?>
 			</span>
 		</div>
 	</div>
@@ -24,19 +24,19 @@
 	<section class="bg0 p-t-52 p-b-20">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
+				<div class="col-md-12 col-lg-12 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
-						<!--  -->
+						<!--  List Blog-->
 						<div class="wrap-pic-w how-pos5-parent">
-							<img src="assets/images/blog-04.jpg" alt="IMG-BLOG">
+							<img src="<?= base_url() ?>assets/upload/blog/<?= $blog->gambar_blog ?>" alt="IMG-BLOG">
 
 							<div class="flex-col-c-m size-123 bg9 how-pos5">
 								<span class="ltext-107 cl2 txt-center">
-									22
+									<?= date('d', strtotime($blog->tanggal_dibuat)) ?>
 								</span>
 
 								<span class="stext-109 cl3 txt-center">
-									Jan 2018
+									<?= date('M', strtotime($blog->tanggal_dibuat))." ".date('Y', strtotime($blog->tanggal_dibuat)) ?>
 								</span>
 							</div>
 						</div>
@@ -44,26 +44,26 @@
 						<div class="p-t-32">
 							<span class="flex-w flex-m stext-111 cl2 p-b-19">
 								<span>
-									<span class="cl4">By</span> "NAMA PUBLISHER"
-									<span class="cl12 m-l-4 m-r-6">|</span>
+									<span class="cl4">By </span> </span> <?= " ".$blog->nama ?>
+									<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
 								</span>
 
 								<span>
-									22 Jan, 2018
-									<span class="cl12 m-l-4 m-r-6">|</span>
+									<?= date('d', strtotime($blog->tanggal_dibuat))." ".date('M', strtotime($blog->tanggal_dibuat)) ?>, <?= date('Y', strtotime($blog->tanggal_dibuat)) ?>
+									<!-- <span class="cl12 m-l-4 m-r-6">|</span> -->
 								</span>
 
-								<span>
+								<!-- <span>
 									8 Comments
-								</span>
+								</span> -->
 							</span>
 
 							<h4 class="ltext-109 cl2 p-b-28">
-								JUDUL BLOG
+								<?= $blog->judul_blog ?>
 							</h4>
 
 							<p class="stext-117 cl6 p-b-26">
-								ISI BLOG
+								<?= $blog->isi_blog ?>
 							</p>
 						</div>
 
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-4 col-lg-3 p-b-80">
+				<!-- <div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
 						<div class="bor17 of-hidden pos-relative">
 							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
@@ -174,7 +174,7 @@
 
 
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

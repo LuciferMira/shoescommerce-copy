@@ -8,6 +8,14 @@ class M_users extends CI_Model{
 	function search($table,$where){
 		return $this->db->get_where($table,$where);
 	}
+
+	function searchid($id){
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('login_oauth_uid', $id);
+		return $this->db->get();
+	}
+	
 	function count_admin(){
 		$this->db->select('*');
 		$this->db->from('users');
