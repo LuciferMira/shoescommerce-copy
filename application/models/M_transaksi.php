@@ -20,9 +20,15 @@ class M_transaksi extends CI_Model{
 	function get_join_search($where){
 		$this->db->select('*');
 		$this->db->from('transaksi');
-		$this->db->join('users', 'users.id_user = transaksi.id_transaksi');
+		$this->db->join('users', 'users.id_user = transaksi.id_user');
 		$this->db->where('id_transaksi', $where);
 		return $this->db->get();
+	}
+	function get_history($where){
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		$this->db->where('id_user', $where);
+		return $this->db->get()->result();
 	}
 	function get_all_detail($where){
 		$this->db->select('*');

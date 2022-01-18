@@ -80,18 +80,33 @@
 							<li>
 								<a href="<?= base_url('contact'); ?>">Contact</a>
 							</li>
+
+							<?php if($this->session->userdata('nama')!= NULL):?>
+									<li>
+										<a href="#">Account</a>
+										<ul class="sub-menu">
+											<li><a href="<?= base_url('login/history') ?>">History Transaction</a></li>
+											<li><a href="<?= base_url('login/profile') ?>">My Profile</a></li>
+											<li><a href="<?= base_url('login/logout') ?>">Logout</a></li>
+										</ul>
+									</li>
+							<?php else: ?>
+								<li>
+									<a href="<?= base_url('login') ?>">Login</a>
+								</li>
+							<?php endif; ?>
 						</ul>
 					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11">
+						<!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11">
 							<?php if($this->session->userdata('nama')!= NULL):?>
 							<a href="<?= base_url('login/logout') ?>"><i class="zmdi zmdi-walk"></i></a>
 						<?php else: ?>
 							<a href="<?= base_url('login'); ?>"><i class="zmdi zmdi-sign-in"></i></a>
 							<?php endif; ?>
-						</div>
+						</div> -->
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
                             <a href="<?= base_url('cart'); ?>"><i class="zmdi zmdi-shopping-cart"></i></a>
@@ -135,9 +150,6 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="<?= base_url(); ?>">Home</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
 				<li>
@@ -155,6 +167,24 @@
 				<li>
 					<a href="<?= base_url('contact'); ?>">Contact</a>
 				</li>
+
+				<?php if($this->session->userdata('nama')!= NULL):?>
+				<li>
+					<a href="#">Account</a>
+					<ul class="sub-menu-m">
+						<li><a href="<?= base_url('login/history') ?>">History Transaction</a></li>
+						<li><a href="<?= base_url('login/profile') ?>">My Profile</a></li>
+						<li><a href="<?= base_url('login/logout') ?>">Logout</a></li>
+					</ul>
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
+				<?php else: ?>
+					<li>
+						<a href="<?= base_url('login') ?>">Login</a>
+					</li>
+				<?php endif; ?>
 			</ul>
 		</div>
 

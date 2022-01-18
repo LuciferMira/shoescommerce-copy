@@ -20,7 +20,8 @@ class Blog extends CI_Controller {
 	public function detail($id)
 	{
 		$datablog = $this->m_blog->search($id)->row();
-		$data = array('blog' => $datablog,
+		$data = array('datauser' => $this->session->userdata(),
+									'blog' => $datablog,
 									'isi' => 'blog/detail',
 									'title' => 'Detail Blog'
 								);

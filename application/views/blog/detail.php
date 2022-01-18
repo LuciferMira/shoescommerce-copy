@@ -70,6 +70,7 @@
 
 						<!--  -->
 						<div class="p-t-40">
+							<?php if($this->session->userdata('nama') != NULL):?>
 							<h5 class="mtext-113 cl2 p-b-12">
 								Leave a Comment
 							</h5>
@@ -79,22 +80,15 @@
 									<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt" placeholder="Comment..."></textarea>
 								</div>
 
-								<div class="bor19 size-218 m-b-20">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="Name *">
-								</div>
-
-								<div class="bor19 size-218 m-b-20">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="email" placeholder="Email *">
-								</div>
-
-								<div class="bor19 size-218 m-b-30">
-									<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="web" placeholder="Website">
-								</div>
-
 								<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
 									Post Comment
 								</button>
 							</form>
+							<?php else: ?>
+								<a href="<?= base_url("login") ?>" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+									Login Terlebih Dahulu
+								</a>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
