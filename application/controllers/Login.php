@@ -124,6 +124,17 @@ class Login extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
+	function admin_profile(){
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("login"));
+		}
+		$data = array('datauser' => $this->session->userdata(),
+									'isi' => 'admin/users/profile',
+									'title' => 'My Profile'
+								);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+
 	function history(){
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("login"));
@@ -187,6 +198,54 @@ class Login extends CI_Controller {
 		// var_dump($datausers);
 	}
 
+	public function update_admin(){
+		if($this->session->userdata('status') != "login" AND $this->session->userdata('akses') != "admin"){
+			redirect(base_url("login"));
+		}
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$tgl_lahir = $this->input->post('tgl_lahir');
+		$tmpt_lahir = $this->input->post('tmpt_lahir');
+		$telp = $this->input->post('telp');
+		$alamat = $this->input->post('alamat');
+
+		$data = array(
+			'nama' => $nama,
+			'telepon' => $telp,
+			'alamat' => $alamat,
+			'tanggal_lahir' => $tgl_lahir,
+			'tempat_lahir' => $tmpt_lahir
+		);
+		$exe = $this->m_users->update('users', $data, $id);
+		if($exe){
+			$where = array(
+				'id_user' => $id,
+			);
+			$cek = $this->m_users->search("users",$where)->num_rows();
+			$datauser1 = $this->m_users->search("users",$where)->row();
+			if($cek > 0){
+				$data_session = array(
+					'id' => $datauser1->id_user,
+					'nama' => $datauser1->nama,
+					'email' => $datauser1->email,
+					'telepon' => $datauser1->telepon,
+					'alamat' => $datauser1->alamat,
+					'tanggal_lahir' => $datauser1->tanggal_lahir,
+					'tempat_lahir' => $datauser1->tempat_lahir,
+					'akses' => $datauser1->akses,
+					'foto' => $datauser1->foto,
+					'status' => "login"
+				);
+			}
+			$this->session->set_userdata($data_session);
+			$this->session->set_flashdata('success', 'Berhasil diubah');
+			redirect(base_url('login/admin_profile'));
+		}else{
+
+		}
+		// var_dump($datausers);
+	}
+
 	public function update_pass(){
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("login"));
@@ -207,8 +266,13 @@ class Login extends CI_Controller {
 		if($old_pass == $datauser1->password AND $new_pass == $conf_pass){
 			$exe = $this->m_users->update('users', $data, $id);
 			if($exe){
-				$this->session->set_flashdata('success', 'Berhasil diubah');
-				redirect(base_url('login/profile'));
+				if($datauser->akses != 'admin'){
+					$this->session->set_flashdata('success', 'Berhasil diubah');
+					redirect(base_url('login/profile'));
+				}else{
+					$this->session->set_flashdata('success', 'Berhasil diubah');
+					redirect(base_url('login/admin_profile'));
+				}
 			}else{
 
 			}
