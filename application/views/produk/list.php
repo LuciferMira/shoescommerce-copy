@@ -6,7 +6,7 @@
 
 			<div class="row isotope-grid">
 				<?php foreach($produk as $row) : ?>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="width:45%;">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
@@ -28,7 +28,7 @@
 								</a>
 
 								<span class="stext-105 cl3">
-									Rp. <?= $row->harga_produk ?>
+									Rp. <?= number_format($row->harga_produk) ?>
 								</span>
 							</div>
 
@@ -46,10 +46,10 @@
 
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
+			<!-- <div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Load More
 				</a>
-			</div>
+			</div> -->
 		</div>
 	</div>

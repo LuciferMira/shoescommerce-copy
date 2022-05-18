@@ -74,7 +74,7 @@
 						</h4>
 
 						<span class="mtext-106 cl2">
-							Rp. <?= $produk->harga_produk ?>
+							Rp. <?= number_format($produk->harga_produk) ?>
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
@@ -126,6 +126,19 @@
 							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-203 flex-c-m respon6">
+									Stok Tersedia
+								</div>
+
+								<div class="size-204 respon6-next">
+									<div class="rs1-select2 bor8 bg0">
+										<input class="form-control" type="text" name="stok" id="stok" disabled>
+										<div class="dropDownSelect2"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -151,14 +164,14 @@
 						</div>
 
 						<!--  -->
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+						<!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
 									<i class="zmdi zmdi-favorite"></i>
 								</a>
 							</div>
 
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

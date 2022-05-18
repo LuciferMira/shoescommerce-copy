@@ -71,13 +71,13 @@
                                             <label for="floatingTextarea2">Alamat</label>
                                             <textarea name="alamat" class="form-control" id="floatingTextarea2" style="height: 200px"><?= $datauser['alamat'] ?></textarea>
                                         </div>
-                                        <!-- </div><div class="mb-3">
+                                        </div><div class="mb-3">
                                             <label for="exampleInputPassword1" class="form-label">Avatar</label>
-                                            <input type="file" class="form-control" id="exampleInputPassword1" disabled>
-                                        </div> -->
-                                    </div>
+                                            <input type="file" class="form-control" id="exampleInputPassword1" name="gambar">
+                                        </div>
                                     <!-- <a href="<?= base_url('admin/users/list_') ?>" class="btn btn-danger">Kembali</a> -->
                                     <button type="submit" class="btn btn-success">Save</button>
+                                  </div>
                                 </form>
                             </div>
                         </div>

@@ -65,10 +65,10 @@ class Foto extends CI_Controller {
 	}
 
 	public function delete($id){
-		$del = $this->m_produk->delete('produk',$id);
+		$del = $this->m_produk->delete('foto',$id);
 		if($del){
 			$this->session->set_flashdata('success', 'Berhasil dihapus');
-			redirect(base_url('admin/produk/detail/'.$id));
+			redirect(base_url('admin/produk'));
 		}else{
 
 		}

@@ -31,7 +31,6 @@ class M_produk extends CI_Model{
 		$this->db->from('produk');
 		$this->db->join('foto', 'produk.id_produk = foto.id_produk');
 		$this->db->group_by('nama_produk');
-		$this->db->limit(4);
 		return $this->db->get();
 	}
 	function search($where){
@@ -47,8 +46,11 @@ class M_produk extends CI_Model{
 	function delete($table,$id){
 		return $this->db->delete($table,array('id_produk' => $id));
 	}
+	function deletedet($table,$id){
+		return $this->db->delete($table,array('id_detail' => $id));
+	}
 	function update($table,$data,$id){
-		return $this->db->delete($table,$data,array('id_produk' => $id));
+		return $this->db->update($table,$data,array('id_produk' => $id));
 	}
 	function get_detail_all($where){
 		$this->db->select('*');
@@ -56,6 +58,15 @@ class M_produk extends CI_Model{
 		$this->db->join('produk', 'produk.id_produk = detail_produk.id_produk');
 		$this->db->join('ukuran', 'ukuran.id_ukuran = detail_produk.id_ukuran');
 		$this->db->where('produk.id_produk', $where);
+		return $this->db->get();
+	}
+	function get_stok($idukuran,$warna){
+		$this->db->select('stok');
+		$this->db->from('detail_produk');
+		$this->db->join('produk', 'produk.id_produk = detail_produk.id_produk');
+		$this->db->join('ukuran', 'ukuran.id_ukuran = detail_produk.id_ukuran');
+		$this->db->where('ukuran.id_ukuran', $idukuran);
+		$this->db->where('detail_produk.warna', $warna);
 		return $this->db->get();
 	}
 }

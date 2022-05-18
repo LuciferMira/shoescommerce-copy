@@ -116,7 +116,7 @@
                                                   </td>
                                                   <td>
                                                     <a href="<?= base_url('admin/foto/edit/'.$row->id_foto) ?>" class="btn waves-effect waves-light btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="<?= base_url('admin/foto/detail/'.$row->id_foto) ?>" class="btn waves-effect waves-light btn-primary"><i class="fas fa-th-list"></i></a>
+                                                    <!-- <a href="<?= base_url('admin/foto/detail/'.$row->id_foto) ?>" class="btn waves-effect waves-light btn-primary"><i class="fas fa-th-list"></i></a> -->
                                                     <a onclick="deleteConfirm('<?= base_url('admin/foto/delete/'.$row->id_foto) ?>')" href="#"
                                                       class="btn waves-effect waves-light btn-danger"><i class="fas fa-trash"></i></a>
                                                   </td>
@@ -195,9 +195,9 @@
                                                     <td><?= $row->warna ?></td>
                                                     <td><?= $row->stok ?></td>
                                                     <td>
-                                                      <a href="<?= base_url('admin/produk/edit/'.$row->id_ukuran) ?>" class="btn waves-effect waves-light btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                                      <a href="<?= base_url('admin/produk/detail/'.$row->id_ukuran) ?>" class="btn waves-effect waves-light btn-primary"><i class="fas fa-th-list"></i></a>
-                                                      <a onclick="deleteConfirm('<?= base_url('admin/produk/delete/'.$row->id_ukuran) ?>')" href="#"
+                                                      <a href="<?= base_url('admin/produk/edit/'.$row->id_detail) ?>" class="btn waves-effect waves-light btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                                      <!-- <a href="<?= base_url('admin/produk/detail/'.$row->id_ukuran) ?>" class="btn waves-effect waves-light btn-primary"><i class="fas fa-th-list"></i></a> -->
+                                                      <a onclick="deleteConfirm2('<?= base_url('admin/produk/deletedetail/'.$row->id_detail) ?>')" href="#"
                                                         class="btn waves-effect waves-light btn-danger"><i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>
@@ -225,4 +225,52 @@
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
+        </div>
+        <script>
+        function deleteConfirm(url){
+          $('#btn-delete').attr('href', url);
+          $('#deleteModal').modal();
+        }
+        </script>
+        <!-- Logout Delete Confirmation-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+        function deleteConfirm2(url){
+          $('#btn-delete2').attr('href', url);
+          $('#deleteModal2').modal();
+        }
+        </script>
+        <!-- Logout Delete Confirmation-->
+        <div class="modal fade" id="deleteModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a id="btn-delete2" class="btn btn-danger" href="#">Delete</a>
+              </div>
+            </div>
+          </div>
         </div>

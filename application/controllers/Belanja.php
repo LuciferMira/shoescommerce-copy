@@ -33,9 +33,9 @@ class Belanja extends CI_Controller {
 		}
 				$data = array ( 'kode_transaksi'            => 'TRA'.uniqid(),
 												'id_user'              			=> $datauser['id'],
-												// 'nama_pelanggan'            => $datauser['nama'],
-												// 'email'                     => $datauser['email'],
-												// 'telepon'                   => $datauser['telepon'],
+												'nama_pelanggan'            => $datauser['nama'],
+												'email'                     => $datauser['email'],
+												'telepon'                   => $datauser['telepon'],
 												// 'alamat'                    => $datauser['alamat'],
 												'total_transaksi'          	=> $total,
 												'status'              			=> 'Belum',
@@ -96,61 +96,36 @@ class Belanja extends CI_Controller {
 	}
 
 	public function sukses(){
-		// Xendit::setApiKey('xnd_development_yIptVIUWtjEGqiM8f5Fwk84yi4CFGUEyinBYYuKYxDBMDJfQ8twCh4A2jWqQHT');
-		//
-		// $getAllInvoice = \Xendit\Invoice::retrieveAll();
+		Xendit::setApiKey('xnd_development_yIptVIUWtjEGqiM8f5Fwk84yi4CFGUEyinBYYuKYxDBMDJfQ8twCh4A2jWqQHT');
+		$curl = curl_init();
+		// {{xnd_development_yIptVIUWtjEGqiM8f5Fwk84yi4CFGUEyinBYYuKYxDBMDJfQ8twCh4A2jWqQHT}}:{{}};
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => 'https://api.xendit.co/non_fixed_payment_code/simulate_payment',
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => '',
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => 'POST',
+		  CURLOPT_POSTFIELDS =>'{
+			"retail_outlet_name" : "ALFAMART",
+			"payment_code" : "JOE1",
+			"transfer_amount" : 80000
+		}',
+		  CURLOPT_HTTPHEADER => array(
+		    'Content-Type: application/json'
+		  ),
+		));
 
-// This will be your Callback Verification Token you can obtain from the dashboard.
-// Make sure to keep this confidential and not to reveal to anyone.
-// This token will be used to verify the origin of request validity is really from Xendit
-$xenditXCallbackToken = 'bfb1c2eeb5f12a54197a54db52fd32825a07b89e06ae9df0925b4e39cbe8ada2';
+		$response = curl_exec($curl);
 
-// This section is to get the callback Token from the header request,
-// which will then later to be compared with our xendit callback verification token
-$reqHeaders = getallheaders();
-$xIncomingCallbackTokenHeader = isset($reqHeaders['x-callback-token']) ? $reqHeaders['x-callback-token'] : "";
-
-// In order to ensure the request is coming from xendit
-// You must compare the incoming token is equal with your xendit callback verification token
-// This is to ensure the request is coming from Xendit and not from any other third party.
-if($xIncomingCallbackTokenHeader === $xenditXCallbackToken){
-  // Incoming Request is verified coming from Xendit
-  // You can then perform your checking and do the necessary,
-  // such as update your invoice records
-
-  // This line is to obtain all request input in a raw text json format
-  $rawRequestInput = file_get_contents("php://input");
-  // This line is to format the raw input into associative array
-  $arrRequestInput = json_decode($rawRequestInput, true);
-  print_r($arrRequestInput);
-
-  $_id = $arrRequestInput['id'];
-  $_externalId = $arrRequestInput['external_id'];
-  $_userId = $arrRequestInput['user_id'];
-  $_status = $arrRequestInput['status'];
-  $_paidAmount = $arrRequestInput['paid_amount'];
-  $_paidAt = $arrRequestInput['paid_at'];
-  $_paymentChannel = $arrRequestInput['payment_channel'];
-  $_paymentDestination = $arrRequestInput['payment_destination'];
-	// echo $_externalId;
-	// $data1 = array(
-	// 	'status' => 'lunas',
-	// 	'tanggal_bayar' => date('Y-m-d H:i:s')
-	// );
-	// $this->m_transaksi->update('transaksi', $data1, $_externalId);
-  // You can then retrieve the information from the object array and use it for your application requirement checking
-
-}else{
-  // Request is not from xendit, reject and throw http status forbidden
-  http_response_code(403);
-}
-
-		// $data = array(
-		// 							'datauser' => $this->session->userdata(),
-		// 							'isi' => 'belanja/sukses',
-		// 							'title' => 'Sukses Belanja'
-		// 						);
-		// $this->load->view('layout/wrapper', $data, FALSE);
-  	// var_dump(($getAllInvoice));
+		curl_close($curl);
+		echo $response;
+		$data1 = array(
+		'status' => 'lunas',
+		'tanggal_bayar' => date('Y-m-d H:i:s')
+	);
+	$this->m_transaksi->update('transaksi', $data1, $_externalId);
 	}
 }

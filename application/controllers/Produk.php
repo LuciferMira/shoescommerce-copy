@@ -34,4 +34,10 @@ class Produk extends CI_Controller {
 								);
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
+	public function cek_stok(){
+		$idukuran =$this->input->post('idukuran');
+		$warna =$this->input->post('warna');
+		$datastok = $this->m_produk->get_stok($idukuran,$warna)->row();
+		echo json_encode($datastok);
+	}
 }

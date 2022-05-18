@@ -186,7 +186,7 @@
                                 <a class="dropdown-item" href="<?= base_url('login/admin_profile') ?>"><i data-feather="user"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Profile</a>
-                                <a class="dropdown-item" href=""><i data-feather="settings"
+                                <a class="dropdown-item" href="<?= base_url('login/form_pass') ?>"><i data-feather="settings"
                                         class="svg-icon mr-2 ml-1"></i>
                                     Change Password</a>
                                 <div class="dropdown-divider"></div>

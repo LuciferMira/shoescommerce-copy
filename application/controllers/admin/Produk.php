@@ -89,23 +89,26 @@ class Produk extends CI_Controller {
 	}
 
 	public function edit($id){
-		$where = array('id_produk' => $id);
-		$dataproduk = $this->m_produk->search('produk',$where)->row();
+		$dataproduk = $this->m_produk->search($id)->row();
+		$datakategori = $this->m_kategori->get_all('kategori')->result();
 		$data = array('datauser' => $this->session->userdata(),
-									'produk'	=> $datakategori,
+									'produk'	=> $dataproduk,
+									'kategori'	=> $datakategori,
 									'isi' => 'admin/produk/edit',
 									'title' => 'Edit Produk'
 								);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
-		// var_dump($datausers);
+		// var_dump($dataproduk);
 	}
 
 	public function update(){
+		$id = $this->input->post('id');
 		$user = $this->input->post('user');
 		$kategori = $this->input->post('kategori');
 		$nama = $this->input->post('nama');
 		$slug = strtolower(str_replace(' ','-',$nama));
 		$harga = $this->input->post('harga');
+		$deskripsi = $this->input->post('deskripsi');
 
 		$data = array(
 			'id_user' => $user,
@@ -113,6 +116,7 @@ class Produk extends CI_Controller {
 			'nama_produk' => $nama,
 			'slug_produk' => $slug,
 			'harga_produk' => $harga,
+			'deskripsi' => $deskripsi,
 			'tanggal_update' => date('Y-m-d')
 		);
 		$exe = $this->m_produk->update('produk', $data, $id);
@@ -142,6 +146,16 @@ class Produk extends CI_Controller {
 		if($exe){
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
 			redirect(base_url('admin/produk/detail/'.$id));
+		}else{
+
+		}
+		// var_dump($datausers);
+	}
+	public function deletedetail($id){
+		$del = $this->m_produk->deletedet('detail_produk',$id);
+		if($del){
+			$this->session->set_flashdata('success', 'Berhasil dihapus');
+			redirect(base_url('admin/produk'));
 		}else{
 
 		}
